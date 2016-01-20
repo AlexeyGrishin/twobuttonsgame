@@ -30,7 +30,7 @@ exports.levels = [{
 }, {
     map: './data/level3.tmx',
     music: './data/level5.ogg',
-    hints: [{ x: 1, y: 2, hint: ["What..."], once: true, delay: 100 }, { x: 2, y: 2, hint: ["Hey, it's moving"], once: true, delay: 100 }, { x: 3, y: 2, hint: ["Aren you scared?"], once: true, delay: 100 }, { x: 4, y: 2, hint: ["And did you notice..."], once: true, delay: 100 }, { x: 5, y: 2, hint: ["...you can't change direction", "when IT cannot?"], once: true, delay: 100 }, { x: 7, y: 2, hint: ["My god..."], once: true, delay: 100 }, { x: 8, y: 2, hint: ["There shall be a way..."], once: true, delay: 100 }, { x: 9, y: 2, hint: ["NOW!"], once: true, delay: 100 }, { x: 8, y: 5, hint: ["Phew!"], once: true }, { x: 13, y: 6, hint: ["Again?"], once: true }, { x: 11, y: 11, hint: ["I'm... in a trap?"], showIf: function showIf(level, game) {
+    hints: [{ x: 1, y: 2, hint: ["What..."], once: true, delay: 100 }, { x: 2, y: 2, hint: ["Hey, it's moving"], once: true, delay: 100 }, { x: 3, y: 2, hint: ["Are you scared?"], once: true, delay: 100 }, { x: 4, y: 2, hint: ["And did you notice..."], once: true, delay: 100 }, { x: 5, y: 2, hint: ["...you can't change direction", "when IT cannot?"], once: true, delay: 100 }, { x: 7, y: 2, hint: ["My god..."], once: true, delay: 100 }, { x: 8, y: 2, hint: ["There shall be a way..."], once: true, delay: 100 }, { x: 9, y: 2, hint: ["NOW!"], once: true, delay: 100 }, { x: 8, y: 5, hint: ["Phew!"], once: true }, { x: 13, y: 6, hint: ["Again?"], once: true }, { x: 11, y: 11, hint: ["I'm... in a trap?"], showIf: function showIf(level, game) {
             return game.hasEnemyOn(11, 17);
         } }, { x: 11, y: 11, hx: 11, hy: 17, hint: ["Gotcha!"], showIf: function showIf(level, game) {
             return game.hasEnemyOn(11, 17);
