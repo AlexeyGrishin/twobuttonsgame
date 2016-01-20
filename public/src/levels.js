@@ -33,7 +33,10 @@ exports.levels = [
             {x:4, y:5, hint: ["Okay, it violates", "'two buttons' theme", "but who cares?"], once:true},
             {x:6, y:5, hx:14, hy:4, hint: ["This guy looks strange..."], once:true},
             {x:6, y:3, hx:16, hy:4, hint: ["Does he repeat your actions?"], once:true},
-            {x:7, y:14, hint: ["Don't hate me for this maze!"], once:true}
+            {x:7, y:14, hint: ["Don't hate me for this maze!"], once:true},
+            {x:10, y:9, hint: ["To pass you needed eating", "green and blue diamonds", "Press 'r' to restart level"], delay: 10000, showIf: (level, game) => {
+                return !level.getObject(7, 3).diamond && !level.getObject(2, 5).diamond && (level.getObject(12,9).lock || level.getObject(13,9).lock )
+            } }
 
         ]
     },

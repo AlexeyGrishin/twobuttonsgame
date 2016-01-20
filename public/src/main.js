@@ -17,7 +17,7 @@ const levels = require('levels').levels;
 class GameState {
     constructor() {
         this.stage = "begin";
-        this.levelIdx = 0;
+        this.levelIdx = 0   ;
         this.hints = new HintState();
         this.playMusic = true;
         this.restart();

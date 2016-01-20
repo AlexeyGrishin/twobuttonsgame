@@ -1619,7 +1619,11 @@ exports.Sound = function Sound(uriOrAudio) {
       channels.forEach(function(audio) {
 		  audio.pause();
 		  audio.load();
-		  audio.currentTime = 0;
+		  //TODO[grishin]: send PR
+		  audio.addEventListener("canplay", () => {
+			  audio.currentTime = 0;
+		  });
+
 	  });
    };
 
