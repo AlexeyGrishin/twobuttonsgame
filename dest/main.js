@@ -46,7 +46,7 @@ var GameState = function () {
         _classCallCheck(this, GameState);
 
         this.stage = "begin";
-        this.levelIdx = 2;
+        this.levelIdx = 0;
         this.hints = new HintState();
         this.playMusic = true;
         this.restart();
