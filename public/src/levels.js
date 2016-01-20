@@ -43,7 +43,7 @@ exports.levels = [
         hints: [
             {x: 1, y: 2,  hint: ["What..."], once: true, delay: 100},
             {x: 2, y: 2,  hint: ["Hey, it's moving"], once: true, delay: 100},
-            {x: 3, y: 2, hint: ["Aren you scared?"], once: true, delay: 100},
+            {x: 3, y: 2, hint: ["Are you scared?"], once: true, delay: 100},
             {x: 4, y: 2,  hint: ["And did you notice..."], once: true, delay: 100},
             {x: 5, y: 2, hint: ["...you can't change direction", "when IT cannot?"], once: true, delay: 100},
             {x: 7, y: 2,  hint: ["My god..."], once: true, delay: 100},

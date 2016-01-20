@@ -17,7 +17,7 @@ const levels = require('levels').levels;
 class GameState {
     constructor() {
         this.stage = "begin";
-        this.levelIdx = 0;
+        this.levelIdx = 2;
         this.hints = new HintState();
         this.playMusic = true;
         this.restart();
@@ -42,6 +42,10 @@ class GameState {
         this.level = new LevelState(levels[this.levelIdx].map);
         this.hints = new HintState(levels[this.levelIdx].hints);
         this.hero = new UnitState(this.level.startPosition, this.level, (anim) => {
+                if (this.heroFalling && anim == "stand") {
+                    Sounds.fall.play();
+                }
+                this.heroFalling = anim == "fall";
                 Animations.hero.green.start(anim);
                 Animations.hero.blue.start(anim);
             }
@@ -110,7 +114,7 @@ class GameState {
                 return;
             }
             this.hero[target.action](target.x - this.hero.x, target.y - this.hero.y);
-            Sounds[target.action].play();
+            //Sounds[target.action].play();
             this.level.swapInto(layer);
 
             if (diamond) {
@@ -216,16 +220,25 @@ function loadDiamond(type) {
     return anim;
 }
 
+animate.Animation.prototype.updateSounded = function (ms) {
+    this.update(ms);
+    let spec = this.spec[this.currentAnimation];
+    if (spec && spec.sound && spec.soundOn == this.currentFrame) {
+        spec.sound.play();
+    }
+};
+
+
+
 function loadHero(type) {
     return new animate.Animation(
         new animate.SpriteSheet(gamejs.image.load(`./data/${type}.png`), {width: 32, height: 32}),
         "stand",
         {
-            //stand: {frames: [0], rate: 0, loop: true},
-            stand: {frames: [0,1,2,3,2,1], rate: 24, loop: true},
-            walk: {frames: range(9), rate: 48, loop: true},
-            jump: {frames: [0, 1, 2, 3, 4], rate: 24},
-            fall: {frames: [5, 6, 7, 8], rate: 24}
+            stand: {frames: [0,1,2,3,2,1], rate: 24, loop: true, sound: Sounds.move},
+            walk: {frames: range(9), rate: 48, loop: true, sound: Sounds.move, soundOn: 0},
+            jump: {frames: [0, 1, 2, 3, 4], rate: 48, sound: Sounds.jump, soundOn: 0},
+            fall: {frames: [5, 6, 7, 8], rate: 48}
         }
     );
 }
@@ -299,9 +312,9 @@ gamejs.ready(() => {
         display.clear();
         DIAMONDS.blue.update(msDuration);
         DIAMONDS.green.update(msDuration);
-        Animations.hero.green.update(msDuration);
-        Animations.hero.blue.update(msDuration);
-        Animations.enemy.update(msDuration);
+        Animations.hero.green.updateSounded(msDuration);
+        Animations.hero.blue.updateSounded(msDuration);
+        Animations.enemy.updateSounded(msDuration);
         switch (game.stage) {
             case "begin":
             case "level": {
